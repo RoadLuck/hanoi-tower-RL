@@ -6,12 +6,11 @@ from agent import Agent
 
 if __name__ == '__main__':
     env = gym.make('Hanoi-v0')
-    env.num_disk = 3
+    env.set_env_parameters(num_disks=2)
 
     actions = env.action_space.n
     states = len(env.observation_space)*3
 
-    print(actions)
     
     agent = Agent(lr=0.85, gamma=0.95, n_actions=actions, n_states=states, eps_start=0.9, eps_end=0.1, eps_dec=0.999)
 
@@ -23,8 +22,6 @@ if __name__ == '__main__':
         done = False
         observation = env.reset()
         score = 0
-        print("Holaa")
-        
         while not done:
             action = agent.choose_action(observation)
             print(action)
